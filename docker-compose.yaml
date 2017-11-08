@@ -1,0 +1,33 @@
+version: '3'
+services:
+  ui:
+    image: dina/dina-collections-ui
+    container_name: dina-collections-ui
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+      - MOCK=false
+      - VIRTUAL_HOST=alpha-cm.dina-web.net
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_PORT=8000
+  ui-mock:
+    image: dina/dina-collections-ui-mock
+    container_name: dina-collections-ui-mock
+    ports:
+      - "8001:8001"
+    environment:
+      - NODE_ENV=production
+      - MOCK=true
+      - VIRTUAL_HOST=alpha-cm-mock.dina-web.net
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_PORT=8001
+  style:
+    image: dina/dina-semantic-ui-docs
+    container_name: dina-semantic-ui-docs
+    ports:
+      - "8002:8002"
+    environment:
+      - VIRTUAL_HOST=alpha-style.dina-web.net
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_PORT=8001
