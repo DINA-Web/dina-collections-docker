@@ -6,22 +6,24 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - NODE_ENV=production
-      - MOCK=false
       - VIRTUAL_HOST=alpha-cm.dina-web.net
       - VIRTUAL_PROTO=http
       - VIRTUAL_PORT=8000
+      - NGINX_HOST=alpha-cm.dina-web.net
+      - NGINX_PORT=8000
+    command: /bin/bash -c "envsubst '$$NGINX_HOST $$NGINX_PORT' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
   ui-mock:
     image: dina/dina-collections-ui-mock
     container_name: dina-collections-ui-mock
     ports:
       - "8001:8001"
     environment:
-      - NODE_ENV=production
-      - MOCK=true
       - VIRTUAL_HOST=alpha-cm-mock.dina-web.net
       - VIRTUAL_PROTO=http
       - VIRTUAL_PORT=8001
+      - NGINX_HOST=alpha-cm-mock.dina-web.net
+      - NGINX_PORT=8001
+    command: /bin/bash -c "envsubst '$$NGINX_HOST $$NGINX_PORT' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
   style:
     image: dina/dina-semantic-ui-docs
     container_name: dina-semantic-ui-docs
@@ -30,4 +32,7 @@ services:
     environment:
       - VIRTUAL_HOST=alpha-style.dina-web.net
       - VIRTUAL_PROTO=http
-      - VIRTUAL_PORT=8001
+      - VIRTUAL_PORT=8002
+      - NGINX_HOST=alpha-style.dina-web.net
+      - NGINX_PORT=8002
+    command: /bin/bash -c "envsubst '$$NGINX_HOST $$NGINX_PORT' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
