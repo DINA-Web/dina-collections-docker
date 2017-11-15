@@ -41,4 +41,5 @@ services:
 networks:
   default:
     external:
-      name: accountsdocker_default
+      name: dwproxy_default 
+
