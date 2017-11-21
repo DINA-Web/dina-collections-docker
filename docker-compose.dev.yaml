@@ -39,6 +39,17 @@ services:
       - NGINX_PORT=8002
     command: /bin/bash -c "envsubst '$$NGINX_HOST $$NGINX_PORT' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 
+  dina-schema:
+    image: dina/dina-schema
+    container_name: dina-schema
+    ports:
+      - "8003:8003"
+    environment:
+      - VIRTUAL_HOST=alpha-api-docs.dina-web.net
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_PORT=8003
+    command: /bin/bash /usr/share/nginx/docker-run.sh
+
   proxy:
     image: jwilder/nginx-proxy:alpine
     ports:
