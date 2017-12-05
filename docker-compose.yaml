@@ -10,7 +10,7 @@ services:
       - VIRTUAL_PROTO=http
       - VIRTUAL_PORT=8000
       - NGINX_AUTH_BASE_URL=http://keycloak:8080
-      - NGINX_TAXONOMY_API_BASE_URL=http://slim-taxonomy-backend:90
+      - NGINX_TAXONOMY_API_BASE_URL=http://slim-taxonomy-backend
       - NGINX_API_BASE_URL=http://api:8080
       - NGINX_HOST=alpha-cm.dina-web.net
       - NGINX_PORT=8000
@@ -25,7 +25,7 @@ services:
       - VIRTUAL_PROTO=http
       - VIRTUAL_PORT=8001
       - NGINX_AUTH_BASE_URL=http://keycloak:8080
-      - NGINX_TAXONOMY_API_BASE_URL=http://slim-taxonomy-backend:90
+      - NGINX_TAXONOMY_API_BASE_URL=http://slim-taxonomy-backend
       - NGINX_API_BASE_URL=http://api:8080
       - NGINX_HOST=alpha-cm-mock.dina-web.net
       - NGINX_PORT=8001
