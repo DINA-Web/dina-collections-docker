@@ -1,5 +1,16 @@
 version: '3'
 services:
+  dockerhub-hook:
+    image: maccyber/micro-dockerhub-hook
+    ports:
+      - "8004:3000"
+    env_file: .env.dockerhub-hook
+    environment:
+      - VIRTUAL_HOST=alpha-deploy.dina-web.net
+    volumes:
+      - ./scripts:/src/scripts
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/var/dina-collections-docker
   ui:
     image: dina/dina-collections-ui
     container_name: dina-collections-ui
